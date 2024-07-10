@@ -15,6 +15,8 @@
 		00D5DA292C3E41AB0019F65B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00D5DA272C3E41AB0019F65B /* LaunchScreen.storyboard */; };
 		00D5DA312C3E56780019F65B /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00D5DA302C3E56780019F65B /* TrackCell.xib */; };
 		00D5DA352C3E68330019F65B /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5DA342C3E68330019F65B /* TrackCell.swift */; };
+		00D5DA382C3E7D690019F65B /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5DA372C3E7D690019F65B /* Track.swift */; };
+		00D5DA3B2C3E893E0019F65B /* SearchMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5DA3A2C3E893E0019F65B /* SearchMusicViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		00D5DA2A2C3E41AB0019F65B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00D5DA302C3E56780019F65B /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		00D5DA342C3E68330019F65B /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
+		00D5DA372C3E7D690019F65B /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		00D5DA3A2C3E893E0019F65B /* SearchMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 		00D5DA1B2C3E41960019F65B /* iTuneSearch */ = {
 			isa = PBXGroup;
 			children = (
+				00D5DA392C3E89260019F65B /* ViewModel */,
+				00D5DA362C3E7D560019F65B /* Model */,
 				00D5DA322C3E675E0019F65B /* View */,
 				00D5DA1C2C3E41960019F65B /* AppDelegate.swift */,
 				00D5DA1E2C3E41960019F65B /* SceneDelegate.swift */,
@@ -87,6 +93,22 @@
 				00D5DA302C3E56780019F65B /* TrackCell.xib */,
 			);
 			path = TrackCell;
+			sourceTree = "<group>";
+		};
+		00D5DA362C3E7D560019F65B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				00D5DA372C3E7D690019F65B /* Track.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		00D5DA392C3E89260019F65B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				00D5DA3A2C3E893E0019F65B /* SearchMusicViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,7 +183,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00D5DA3B2C3E893E0019F65B /* SearchMusicViewModel.swift in Sources */,
 				00D5DA212C3E41960019F65B /* SearchMusicViewController.swift in Sources */,
+				00D5DA382C3E7D690019F65B /* Track.swift in Sources */,
 				00D5DA1D2C3E41960019F65B /* AppDelegate.swift in Sources */,
 				00D5DA1F2C3E41960019F65B /* SceneDelegate.swift in Sources */,
 				00D5DA352C3E68330019F65B /* TrackCell.swift in Sources */,

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class TrackCell: UICollectionViewCell {
+  static let identifier = String(describing: TrackCell.self)
   
   @IBOutlet weak var longDescription: UILabel!
   @IBOutlet weak var trackTimeMillis: UILabel!

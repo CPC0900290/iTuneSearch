@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class TrackCell: UICollectionViewCell {
   static let identifier = String(describing: TrackCell.self)
@@ -21,6 +22,7 @@ class TrackCell: UICollectionViewCell {
     trackNameLabel.text = model.trackName
     trackTimeMillisLabel.text = model.formattedTrackTime
     longDescriptionLabel.text = model.longDescription
-    // set image by kingfisher
+    trackImage.kf.setImage(with: URL(string: model.artworkUrl100))
+    trackImage.layer.cornerRadius = trackImage.frame.width / 10
   }
 }

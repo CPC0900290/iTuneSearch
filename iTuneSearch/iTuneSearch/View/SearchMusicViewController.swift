@@ -26,6 +26,11 @@ class SearchMusicViewController: UIViewController {
     // Do any additional setup after loading the view.
   }
   
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    searchButton.layer.cornerRadius = searchButton.frame.width / 30
+  }
+  
   // MARK: UI setup
   private func setupCollectionView() {
     collectionView.register(UINib(nibName: "TrackCell", bundle: nil), forCellWithReuseIdentifier: "TrackCell")

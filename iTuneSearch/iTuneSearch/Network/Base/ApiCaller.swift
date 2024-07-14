@@ -21,14 +21,12 @@ public protocol Request {
   var path: String { get }
   var host: String { get }
   var queryItems: [URLQueryItem] { get }
-//  var headers: [String: String] { get }
   var body: Data? { get }
 }
 
 public extension Request {
   var scheme: String { return "https" }
   var method: HTTPMethod { return .get }
-//  var headers: [String: String] { return [:] }
   var body: Data? { return nil }
 }
 
@@ -44,7 +42,6 @@ public extension Request {
     }
     
     var request = URLRequest(url: url)
-//    request.allHTTPHeaderFields = headers
     request.httpMethod = method.rawValue
     request.httpBody = body
     return request
@@ -56,11 +53,7 @@ public struct DataLoader {
   public func request<T: Decodable>(_ request: Request, decodable: T.Type, then handler: @escaping (Result<T, NetworkError>) -> Void) {
     
     let urlRequest = request.build()
-    
     let urlSession = URLSession(configuration: .default)
-    
-//    print(" \n <<<<<<< REQUEST: ", urlRequest.description)
-//    print(" \n <<<<<<< >>>>>>>>> ")
     
     let task = urlSession.dataTask(with: urlRequest) {data, urlResponse, error in
       if let error = error {
@@ -69,10 +62,6 @@ public struct DataLoader {
       } else {
         if let data = data {
           do {
-            // write response data for debug
-//            print(" \n <<<<<<< RESPONSE: ", String(data: data, encoding: .utf8) ?? "")
-//            print(" \n <<<<<<< >>>>>>>>> ")
-            
             let decodedData = try decoder(with: data, decodable: decodable)
             handler(.success(decodedData))
           } catch {

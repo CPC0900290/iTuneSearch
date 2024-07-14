@@ -7,11 +7,15 @@
 
 import Foundation
 
-struct Track {
+struct TrackResult: Codable {
+  let results: [Track]
+}
+
+struct Track: Codable {
   let trackName: String
   var trackTimeMillis: Float
-  let longDescription: String
-  let trackImage: String
+  let longDescription: String?
+  let artworkUrl100: String
 }
 
 extension Track {

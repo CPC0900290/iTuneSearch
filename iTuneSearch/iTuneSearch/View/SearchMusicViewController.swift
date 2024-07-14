@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SearchMusicViewController: UIViewController {
   
@@ -14,12 +16,13 @@ class SearchMusicViewController: UIViewController {
   @IBOutlet weak var searchButton: UIButton!
   @IBOutlet weak var searchTextField: UITextField!
   private var viewModel = SearchMusicViewModel()
+  private let disposeBag = DisposeBag()
   
   // MARK: Life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    viewModel.setupTestData()
     setupCollectionView()
+    setupBinding()
     // Do any additional setup after loading the view.
   }
   
@@ -27,7 +30,7 @@ class SearchMusicViewController: UIViewController {
   private func setupCollectionView() {
     collectionView.register(UINib(nibName: "TrackCell", bundle: nil), forCellWithReuseIdentifier: "TrackCell")
     collectionView.collectionViewLayout = setupCVLayout()
-    collectionView.dataSource = self
+//    collectionView.dataSource = self
   }
   
   private func setupCVLayout() -> UICollectionViewCompositionalLayout {
@@ -48,24 +51,38 @@ class SearchMusicViewController: UIViewController {
       return section
     }
   }
-}
-
-extension SearchMusicViewController: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    viewModel.testDatas.count
-  }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrackCell.identifier, for: indexPath) as! TrackCell
-    cell.trackName.text = viewModel.testDatas[indexPath.item].trackName
-    cell.trackTimeMillis.text = viewModel.testDatas[indexPath.item].formattedTrackTime
-    cell.longDescription.text = viewModel.testDatas[indexPath.item].longDescription
-    cell.trackImage.image = UIImage(named: viewModel.testDatas[indexPath.item].trackImage)
-    return cell
+  // MARK: setup binding
+  private func setupBinding() {
+    searchButton.rx.tap
+      .withLatestFrom(searchTextField.rx.text)
+      .bind {[weak self] text in
+        self?.viewModel.search(for: text ?? "")
+      }
+      .dispose()
+      
+//      .bind { event in
+//        guard let text = self.searchTextField.text else {
+//          print("searchTextField is empty")
+//          return
+//        }
+//        self.viewModel.fetchTracks(for: text)
+//          .bind(to: self.viewModel.searchResults)
+//          .disposed(by: self.viewModel.disposeBag)
+//      }
+    
+    searchTextField.rx.text
+      .orEmpty
+      .bind(to: viewModel.searchText)
+      .disposed(by: disposeBag)
+    
+    viewModel.searchResults
+      .observe(on: MainScheduler.instance)
+      .bind(to: collectionView.rx.items(cellIdentifier: "TrackCell", cellType: TrackCell.self)) { index, model, cell in
+        cell.update(model: model)
+      }
+      .disposed(by: disposeBag)
   }
 }
 
-extension SearchMusicViewController: UICollectionViewDelegate {
-  
-}
-
+// Search Button action

@@ -17,6 +17,11 @@
 		00D5DA352C3E68330019F65B /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5DA342C3E68330019F65B /* TrackCell.swift */; };
 		00D5DA382C3E7D690019F65B /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5DA372C3E7D690019F65B /* Track.swift */; };
 		00D5DA3B2C3E893E0019F65B /* SearchMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5DA3A2C3E893E0019F65B /* SearchMusicViewModel.swift */; };
+		00D5DA402C3F023D0019F65B /* ApiURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5DA3F2C3F023D0019F65B /* ApiURL.swift */; };
+		00D5DA422C3F03420019F65B /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5DA412C3F03420019F65B /* ApiCaller.swift */; };
+		00D5DA442C3F03880019F65B /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5DA432C3F03880019F65B /* NetworkError.swift */; };
+		00D5DA472C3F08310019F65B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D5DA462C3F08310019F65B /* ApiService.swift */; };
+		886D2A368F453F29CA63016B /* Pods_iTuneSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FAF6FFB84ADD967179C22D /* Pods_iTuneSearch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,13 @@
 		00D5DA342C3E68330019F65B /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		00D5DA372C3E7D690019F65B /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		00D5DA3A2C3E893E0019F65B /* SearchMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMusicViewModel.swift; sourceTree = "<group>"; };
+		00D5DA3F2C3F023D0019F65B /* ApiURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiURL.swift; sourceTree = "<group>"; };
+		00D5DA412C3F03420019F65B /* ApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCaller.swift; sourceTree = "<group>"; };
+		00D5DA432C3F03880019F65B /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		00D5DA462C3F08310019F65B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		09FAF6FFB84ADD967179C22D /* Pods_iTuneSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTuneSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52D01A8425B0CE9D4635374A /* Pods-iTuneSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTuneSearch.release.xcconfig"; path = "Target Support Files/Pods-iTuneSearch/Pods-iTuneSearch.release.xcconfig"; sourceTree = "<group>"; };
+		938CA8D60AA75A67FA360662 /* Pods-iTuneSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTuneSearch.debug.xcconfig"; path = "Target Support Files/Pods-iTuneSearch/Pods-iTuneSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				886D2A368F453F29CA63016B /* Pods_iTuneSearch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +63,8 @@
 			children = (
 				00D5DA1B2C3E41960019F65B /* iTuneSearch */,
 				00D5DA1A2C3E41960019F65B /* Products */,
+				B4A5E64DFE04F4D0FF19DB84 /* Pods */,
+				1342EC53A9C42CE74B9F4BD4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +79,7 @@
 		00D5DA1B2C3E41960019F65B /* iTuneSearch */ = {
 			isa = PBXGroup;
 			children = (
+				00D5DA3C2C3F02020019F65B /* Network */,
 				00D5DA392C3E89260019F65B /* ViewModel */,
 				00D5DA362C3E7D560019F65B /* Model */,
 				00D5DA322C3E675E0019F65B /* View */,
@@ -111,6 +127,58 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		00D5DA3C2C3F02020019F65B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				00D5DA452C3F08010019F65B /* ApiService */,
+				00D5DA3D2C3F020D0019F65B /* Base */,
+				00D5DA3E2C3F02150019F65B /* Error */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		00D5DA3D2C3F020D0019F65B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				00D5DA412C3F03420019F65B /* ApiCaller.swift */,
+				00D5DA3F2C3F023D0019F65B /* ApiURL.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		00D5DA3E2C3F02150019F65B /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				00D5DA432C3F03880019F65B /* NetworkError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		00D5DA452C3F08010019F65B /* ApiService */ = {
+			isa = PBXGroup;
+			children = (
+				00D5DA462C3F08310019F65B /* ApiService.swift */,
+			);
+			path = ApiService;
+			sourceTree = "<group>";
+		};
+		1342EC53A9C42CE74B9F4BD4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09FAF6FFB84ADD967179C22D /* Pods_iTuneSearch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4A5E64DFE04F4D0FF19DB84 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				938CA8D60AA75A67FA360662 /* Pods-iTuneSearch.debug.xcconfig */,
+				52D01A8425B0CE9D4635374A /* Pods-iTuneSearch.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -118,9 +186,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00D5DA2D2C3E41AB0019F65B /* Build configuration list for PBXNativeTarget "iTuneSearch" */;
 			buildPhases = (
+				081B546792E82013BD4846CC /* [CP] Check Pods Manifest.lock */,
 				00D5DA152C3E41960019F65B /* Sources */,
 				00D5DA162C3E41960019F65B /* Frameworks */,
 				00D5DA172C3E41960019F65B /* Resources */,
+				79EC43B60BF5469E9F00F776 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -178,6 +248,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		081B546792E82013BD4846CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iTuneSearch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79EC43B60BF5469E9F00F776 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTuneSearch/Pods-iTuneSearch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTuneSearch/Pods-iTuneSearch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTuneSearch/Pods-iTuneSearch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		00D5DA152C3E41960019F65B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -187,8 +299,12 @@
 				00D5DA212C3E41960019F65B /* SearchMusicViewController.swift in Sources */,
 				00D5DA382C3E7D690019F65B /* Track.swift in Sources */,
 				00D5DA1D2C3E41960019F65B /* AppDelegate.swift in Sources */,
+				00D5DA402C3F023D0019F65B /* ApiURL.swift in Sources */,
 				00D5DA1F2C3E41960019F65B /* SceneDelegate.swift in Sources */,
+				00D5DA472C3F08310019F65B /* ApiService.swift in Sources */,
+				00D5DA442C3F03880019F65B /* NetworkError.swift in Sources */,
 				00D5DA352C3E68330019F65B /* TrackCell.swift in Sources */,
+				00D5DA422C3F03420019F65B /* ApiCaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +367,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -314,7 +430,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -335,6 +451,7 @@
 		};
 		00D5DA2E2C3E41AB0019F65B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 938CA8D60AA75A67FA360662 /* Pods-iTuneSearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -363,6 +480,7 @@
 		};
 		00D5DA2F2C3E41AB0019F65B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52D01A8425B0CE9D4635374A /* Pods-iTuneSearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

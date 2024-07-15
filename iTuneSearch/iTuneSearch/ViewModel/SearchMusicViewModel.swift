@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxRelay
+import AVFoundation
 // 訂閱 button 觸及事件
 
 protocol SearchMusicViewModelActions: AnyObject {
@@ -15,12 +16,15 @@ protocol SearchMusicViewModelActions: AnyObject {
   
   var searchText: PublishSubject<String> { get }
   var searchResults: PublishRelay<[Track]> { get }
+  var currentlyPlaying: BehaviorSubject<Track?> { get }
 }
 
 class SearchMusicViewModel: SearchMusicViewModelActions {
   private let disposeBag = DisposeBag()
   var searchText = PublishSubject<String>()
   var searchResults = PublishRelay<[Track]>()
+  var currentlyPlaying: BehaviorSubject<Track?> = BehaviorSubject(value: nil)
+  let player = AVPlayer()
   
   init() {
     searchText
@@ -48,5 +52,36 @@ class SearchMusicViewModel: SearchMusicViewModelActions {
   
   func search(for text: String) {
     searchText.onNext(text)
+  }
+  
+  private func playMusic(from music: String) {
+    guard let musicUrl = URL(string: music) else { return }
+    let playerItem = AVPlayerItem(url: musicUrl)
+    player.replaceCurrentItem(with: playerItem)
+    player.play()
+  }
+  
+  private func playPause() {
+    if player.timeControlStatus == .playing{
+      player.pause()
+    }else{
+      player.play()
+    }
+  }
+  
+  private func updatePlayingStatus() {
+    if player.timeControlStatus == .paused {
+      currentlyPlaying.onNext(nil)
+    }
+  }
+  
+  func togglePlay(for track: Track) {
+    if (try? currentlyPlaying.value()) == track {
+      playPause()
+    } else {
+      playMusic(from: track.previewUrl)
+      currentlyPlaying.onNext(track)
+    }
+    updatePlayingStatus()
   }
 }

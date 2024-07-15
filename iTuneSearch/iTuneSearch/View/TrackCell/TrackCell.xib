@@ -46,6 +46,13 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IqL-Tn-gIG">
+                        <rect key="frame" x="57.333333333333343" y="15.333333333333336" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Q8O-1L-dFc"/>
+                            <constraint firstAttribute="width" constant="20" id="eIr-Vf-3Hh"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -55,8 +62,10 @@
                     <constraint firstItem="kPh-Ci-GiS" firstAttribute="top" secondItem="AcZ-vn-3gT" secondAttribute="bottom" constant="20" id="POi-FE-aPj"/>
                     <constraint firstItem="kPh-Ci-GiS" firstAttribute="leading" secondItem="f3W-Vz-NNP" secondAttribute="trailing" constant="20" id="QR5-c7-9Mx"/>
                     <constraint firstItem="f3W-Vz-NNP" firstAttribute="centerY" secondItem="kKc-Yj-dZn" secondAttribute="centerY" id="RcA-8J-eUU"/>
+                    <constraint firstItem="IqL-Tn-gIG" firstAttribute="bottom" secondItem="f3W-Vz-NNP" secondAttribute="top" constant="-10" id="WGS-xp-761"/>
                     <constraint firstItem="AcZ-vn-3gT" firstAttribute="leading" secondItem="kPh-Ci-GiS" secondAttribute="leading" id="eJg-RQ-jJ4"/>
                     <constraint firstItem="AcZ-vn-3gT" firstAttribute="top" secondItem="kKc-Yj-dZn" secondAttribute="top" constant="20" id="fCa-Jd-nZh"/>
+                    <constraint firstItem="IqL-Tn-gIG" firstAttribute="centerX" secondItem="f3W-Vz-NNP" secondAttribute="centerX" id="mrt-yr-Ij3"/>
                     <constraint firstAttribute="trailing" secondItem="AcZ-vn-3gT" secondAttribute="trailing" constant="20" id="oke-nw-uVU"/>
                     <constraint firstItem="f3W-Vz-NNP" firstAttribute="width" secondItem="kKc-Yj-dZn" secondAttribute="width" multiplier="1:4" id="rnj-XO-Fu6"/>
                 </constraints>
@@ -64,6 +73,7 @@
             <size key="customSize" width="378" height="185"/>
             <connections>
                 <outlet property="longDescriptionLabel" destination="kPh-Ci-GiS" id="2uo-SA-nrW"/>
+                <outlet property="playPauseIcon" destination="IqL-Tn-gIG" id="nxG-4d-xaY"/>
                 <outlet property="trackImage" destination="f3W-Vz-NNP" id="lg5-bm-iST"/>
                 <outlet property="trackNameLabel" destination="cJf-3D-fpq" id="mCp-l6-01f"/>
                 <outlet property="trackTimeMillisLabel" destination="zce-tM-lST" id="GHW-IF-y3n"/>

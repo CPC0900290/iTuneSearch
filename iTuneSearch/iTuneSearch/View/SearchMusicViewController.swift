@@ -23,6 +23,7 @@ class SearchMusicViewController: UIViewController {
     super.viewDidLoad()
     setupCollectionView()
     setupBinding()
+    bindingCell()
     // Do any additional setup after loading the view.
   }
   
@@ -35,7 +36,6 @@ class SearchMusicViewController: UIViewController {
   private func setupCollectionView() {
     collectionView.register(UINib(nibName: "TrackCell", bundle: nil), forCellWithReuseIdentifier: "TrackCell")
     collectionView.collectionViewLayout = setupCVLayout()
-//    collectionView.dataSource = self
   }
   
   private func setupCVLayout() -> UICollectionViewCompositionalLayout {
@@ -43,12 +43,12 @@ class SearchMusicViewController: UIViewController {
       let heightDimension = NSCollectionLayoutDimension.estimated(200)
       let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                             heightDimension: heightDimension)
-      let item = NSCollectionLayoutItem(layoutSize: itemSize) // Whithout badge
+      let item = NSCollectionLayoutItem(layoutSize: itemSize)
       item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
       
       let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                              heightDimension: heightDimension)
-      let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+      let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                    repeatingSubitem: item,
                                                    count: 1)
       group.interItemSpacing = .fixed(CGFloat(10))
@@ -64,17 +64,7 @@ class SearchMusicViewController: UIViewController {
       .bind {[weak self] text in
         self?.viewModel.search(for: text ?? "")
       }
-      .dispose()
-      
-//      .bind { event in
-//        guard let text = self.searchTextField.text else {
-//          print("searchTextField is empty")
-//          return
-//        }
-//        self.viewModel.fetchTracks(for: text)
-//          .bind(to: self.viewModel.searchResults)
-//          .disposed(by: self.viewModel.disposeBag)
-//      }
+      .disposed(by: disposeBag)
     
     searchTextField.rx.text
       .orEmpty
@@ -83,11 +73,26 @@ class SearchMusicViewController: UIViewController {
     
     viewModel.searchResults
       .observe(on: MainScheduler.instance)
-      .bind(to: collectionView.rx.items(cellIdentifier: "TrackCell", cellType: TrackCell.self)) { index, model, cell in
-        cell.update(model: model)
+      .bind(to: collectionView.rx.items(cellIdentifier: "TrackCell", cellType: TrackCell.self)) {[weak self] index, model, cell in
+        let isPlaying = (try? self?.viewModel.currentlyPlaying.value()) == model
+        cell.update(model: model, isPlaying: isPlaying)
       }
+      .disposed(by: disposeBag)
+    
+    viewModel.currentlyPlaying
+      .observe(on: MainScheduler.instance)
+      .subscribe(onNext: { [weak self] _ in
+        self?.collectionView.reloadData()
+      })
+      .disposed(by: disposeBag)
+  }
+  
+  private func bindingCell() {
+    collectionView.rx
+      .modelSelected(Track.self)
+      .subscribe(onNext: { [weak self] track in
+        self?.viewModel.togglePlay(for: track)
+      })
       .disposed(by: disposeBag)
   }
 }
-
-// Search Button action

@@ -11,11 +11,12 @@ struct TrackResult: Codable {
   let results: [Track]
 }
 
-struct Track: Codable {
+struct Track: Codable, Equatable {
   let trackName: String
   var trackTimeMillis: Float
   let longDescription: String?
   let artworkUrl100: String
+  let previewUrl: String
 }
 
 extension Track {

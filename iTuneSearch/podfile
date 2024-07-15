@@ -1,0 +1,8 @@
+# Podfile
+use_frameworks!
+
+target 'iTuneSearch' do
+    pod 'RxSwift', '6.7.1'
+    pod 'RxCocoa', '6.7.1'
+    pod 'Kingfisher', '~> 7.0'
+end

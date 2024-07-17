@@ -18,9 +18,11 @@ class TrackCell: UICollectionViewCell {
   @IBOutlet weak var trackNameLabel: UILabel!
   @IBOutlet weak var trackImage: UIImageView!
   
-  func update(model: Track, isPlaying: Bool) {
-    playPauseIcon.image = isPlaying ? UIImage(systemName: "pause.rectangle.fill") : UIImage(systemName: "play.square.fill")
-    self.playPauseIcon.isHidden = !isPlaying
+  func update(model: Track, isPlaying: Bool, isPause: Bool?) {
+    if let isPause = isPause {
+      playPauseIcon.image = isPause ? UIImage(systemName: "pause.rectangle.fill") : UIImage(systemName: "play.square.fill")
+    }
+    playPauseIcon.isHidden = !isPlaying
     trackNameLabel.text = model.trackName
     trackTimeMillisLabel.text = model.formattedTrackTime
     longDescriptionLabel.text = model.longDescription

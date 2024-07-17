@@ -24,6 +24,7 @@ class SearchMusicViewModel: SearchMusicViewModelActions {
   var searchText = PublishSubject<String>()
   var searchResults = PublishRelay<[Track]>()
   var currentlyPlaying: BehaviorSubject<Track?> = BehaviorSubject(value: nil)
+  var isPause: BehaviorSubject<Bool?> = BehaviorSubject(value: nil)
   let player = AVPlayer()
   
   init() {
@@ -71,7 +72,9 @@ class SearchMusicViewModel: SearchMusicViewModelActions {
   
   private func updatePlayingStatus() {
     if player.timeControlStatus == .paused {
-      currentlyPlaying.onNext(nil)
+      isPause.onNext(true)
+    } else {
+      isPause.onNext(false)
     }
   }
   

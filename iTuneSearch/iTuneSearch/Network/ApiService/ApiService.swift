@@ -49,7 +49,7 @@ extension ApiService {
         case .success(let data):
           observer.onNext(.success(data.results))
         case .failure(_):
-          observer.onNext(.failure(NetworkError.decodingFailed))
+          observer.onNext(.failure(.decodingFailed))
         }
         observer.onCompleted()
       }

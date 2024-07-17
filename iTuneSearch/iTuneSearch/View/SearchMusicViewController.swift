@@ -75,15 +75,23 @@ class SearchMusicViewController: UIViewController {
       .observe(on: MainScheduler.instance)
       .bind(to: collectionView.rx.items(cellIdentifier: "TrackCell", cellType: TrackCell.self)) {[weak self] index, model, cell in
         let isPlaying = (try? self?.viewModel.currentlyPlaying.value()) == model
-        cell.update(model: model, isPlaying: isPlaying)
+        let isPause = (try? self?.viewModel.isPause.value())
+        cell.update(model: model, isPlaying: isPlaying, isPause: isPause)
       }
       .disposed(by: disposeBag)
     
     viewModel.currentlyPlaying
       .observe(on: MainScheduler.instance)
-      .subscribe(onNext: { [weak self] _ in
+      .subscribe(onNext: { [weak self] track in
         self?.collectionView.reloadData()
       })
+      .disposed(by: disposeBag)
+    
+    viewModel.isPause
+      .observe(on: MainScheduler.instance)
+      .subscribe { [weak self] _ in
+        self?.collectionView.reloadData()
+      }
       .disposed(by: disposeBag)
   }
   
